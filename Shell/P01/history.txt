@@ -1,0 +1,714 @@
+history
+history
+ls -lah
+ls
+grep history
+history
+history
+history
+history
+history
+exit
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+history
+grep history history.txt
+grep history history.txt
+history
+history
+history
+history
+history
+history
+history
+history
+ls -l -a -h
+history
+history
+pretty
+history
+history
+history
+history
+history -r
+history -rat blah.txt
+history -rat blah.txt
+history -rat blah.txt 
+history -rat blah.txt 
+history -rat blah.txt 
+pwd
+pwd
+pwd
+head beowolf.txt
+head p01/data/[D[D[D[D[D[D[D[P[C[C[C[C[C[C[C[Cbeowulf.txt
+head P01/data/beowulf.txt
+head beowulf.txt
+head ./P01/data/beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head
+head ./P01/ApiStarter/data/beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+ls
+ls
+ls
+ls -l -a -h params
+head quad2.text
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head ./P01/ApiStarter/data/beowulf.txt
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head quad2.md
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+head quad2.text
+head misses.txt
+exit
+ls
+ls -lah bleh
+exit
+ls
+ls -lah
+head ga.js
+head ga.js
+head ga.js
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head ga.js
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head tl_2016_us_primaryroads.cpg
+/bin/python3 /home/tarismajor/Shell/Shell_Project-/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+head tl_2016_us_primaryroads.cpg
+head ga.js
+ls
+ls
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/Command_Packages/test.py
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/Command_Packages/test.py
+ls
+ls
+/bin/python3 /home/tarismajor/Shell/Shell_Project-1/shell.py
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls /1000-Spatial_Data_Structures/papers
+ls -lah
+ls /pah
+ls /1000-Spatial_Data_Structures/ppts
+ls /pah
+ls /1000-Spatial_Data_Structures/
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/images
+ls
+ls /1000-Data-Structures/images
+ls /1000-Data-Structures/images
+head /1000-Spatial_Data_Structures
+head /1000-Spatial_Data_Structures
+head ./P01
+head /P01
+ls /1000-Data-Structures/images
+ls bang
+ls /1000
+ls /1000-Data-Structures/images
+ls /1000-Data-St
+ls /1000-Spatial_Data_Structures/images
+ls /1000-Spatial_Data_Structures/python_code
+ls /1000-Spatial_Data_Structures/Astar
+ls /1000-Spatial_Data_Structures/Astar
+ls
+ls
+ls
+ls -l -a -h
+ls -l -a -h
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -lah
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+[A[Bls -l
+ls
+ls -lah
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls -l
+ls
+ls -l
+ls -l
+ls -l
+ls -l
+ls
+ls -l
+ls -l
+ls -a
+ls -a
+ls -a
+ls -h
+ls -a
+ls -k
+ls -l
+ls -l
+ls -l
+ls -l
+ls -a
+ls -a
+ls -a
+ls -a
+ls -lh
+ls -lh
+ls -lh
+ls -l
+ls -l
+ls -l
+ls -lh
+ls -l
+ls -l
+ls -l
+ls -lh
+ls -lh
+ls -lh
+ls -lh
+ls /1000-Spatial_Data_Structures/ppts
+ls -lah /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls
+ls
+ls
+ls -lh
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/ppts
+ls -lh /1000-Spatial_Data_Structures/images
+ls -lh /images
+ls -lh python_code
+ls -lh geo.py
+grep history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+grep ls history.txt
+ls
+ls -l
+head /geo.py
+head /1000-Spatial_Data_Structures/geo.py
+head geo.py
+head geo.py
+head geo.py
+head geo.py
+head quad2.text
+head misses.txt
+head misses.txt
+head misses.txt
+head misses.txt
+ls
+ls /Astar
+ls /pantograph
+ls -l
+ls
+head quad2.text
+head misses.txt
+head crash_data_missed_summary.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+head -n 25 ./P01/ApiStarter/data/beowulf.txt
+man head
+head -n 50 ./P01?ApiStarter/data/beowuld.txt
+head -n 50 ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+tail -n 30 ./P01/ApiStarter/data/beowulf ./P01/ApiStarter/data/odyssy.txt
+head -n 30 ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+tail ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data.odyssy.txt
+tail ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+tail -n 30 ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+head input.json
+head ./P01/ApiStarter/data.beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt
+head ./P01/ApiStarter/data/beowulf.txt ./P01/ApiStarter/data/odyssy.txt
+head -n 60 ./P01/ApiStarter/data/beowulf.txt
+head -n -n ./P01/ApiStarter/data/beowulf.txt
+ls -l
+chmod 77 geo.py
+chmod 77 geo.py
+chmod 31 geo.py
+chmod 32 geo.py
+chmod 32 geo.py
+chmod 32 geo.py
+chmod 01 geo.py
+chmod 32 geo.py
+cp quad2.txt
+cp quad2.txt
+cp quad2.txt
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp quad2.text
+cp misses.txt
+cp crash_data_missed_summary.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp /data/earthquake_data/misses.txt /1000-Spatial_Data_Structures/papers/testfile.txt
+cp -a
+cp /data/earthquake_data/misses.txt /data/earthquake_data/misses.txt
+mv -t
+mv quad2.md quad3.md
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad3.md
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.txt
+mv /1000-Spatial_Data_Structures/quad2.md /1000-Spatial_Data_Structures/quad4.md
+mv /1000-Spatial_Data_Structures/quad4.md /1000-Spatial_Data_Structures/Btree/test.md
+!!!!!
+!!!
+!!!
+!!!!
+history
+head history.txt
+head history
+head ./P01/history.txt
+head ./P01/history.txt
+history
+history
+history
+!!!!
+!!!!
+!!!!
+!!!!!
+!!!!!
+!!!
+head history.txt
+!
+history
+!!!
+!!!
+!!!
+ls
+head history.txt
+head ./P01/history.txt
+head -n 25 ./P01/history.txt
+!!!
+!!!!
+!!!
+!!!!
+!!!!
+!!!!
+!!!!
+!!!!
+!!!!!
+!!!!
+!!!!
+!!!!!
+!!!!!
+history
+!!!
+!!!!!
+!
+!!!
+!!!
+!!!
+!!
+!!!
+!7
+!!
+history
+!!
+!!
+history
+!!
+history
+!!
+history
+!!
+!!
+history
+!!
+!9
+!15
+!109
+!109
+!109
+!109
+!109
+!23
+!23
+!23
+!23
+history
+!278
+!9
+!209
+!209
+!!
+!207
+!209
+!43
+!45
+!34
+!209
+!220
+!220
+!220
+!209
+!209
+!220
+!7
+!209
+!220
+!221
+!222
+!222
+!225
+history
+history
+!!
+history
+!!
+history
+!!
+!225
+ls -l
+ls
+!!
+ls
+!!
+ls
+ls -lah
+ls -l
+!!
+ls -a
+ls -lah
+ls -lah > textfile.txt
+ls -lah > /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls -lah > /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+!!
+history
+!! >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+history >> /1000-Data_Structures/Astar/testfile.txt
+history >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+!!
+!!
+history >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+ls >> /1000-Spatial_Data_Structures/Astar/testfile.txt
+head ./P01/ApiStarter/data/beowulf > /1000-Spatial_Data_Structures/Astar/beohead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/Astar/beohead.txt
+ls >> /1000-Spatial_Data_Structures/Astar/beohead.txt
+head ./P01/ApiStarter/data/odyssy.txt > /1000-Spatial_Data_Structures/Astar/odyhead.txt
+ls >> /1000-Spatial_Data_Structures/Astar/odyhead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/ppts/beohead.txt
+head ./P01/ApiStarter/data/beowulf.txt > /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+!!
+ls > /1000-Spatial_Data_Structures/ppts/testls.txt
+ls > /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls -lah >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+!!
+ls >> /1000-Spatial_Data_Structures/ppts/testls.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls -lah >> /1000-Spatial_Data_Structures/ppts/beohead.txt
+ls -lah | head -n 2
+!!
+ls -lah | head -n 2
+ls | head -n 3
+ls | head -n 3
+ls | head -n 3
+ls | head -n 3
+ls | head -n 4
+ls | head -n 5
+!!
+ls | head -n 5
+ls | head -n 5
+ls
+ls
+ls
+ls
+ls | head -n 4
+ls | head -n 6
+ls
+ls
+ls
+ls | head -n 6
+ls | head -n 6
+ls
+ls | head -n 6
+ls | head -n 6
+ls | head -n 7
+!!
+ls | head -n 2
+ls | head -n 6
+ls | head -n 5
+ls | head -n 5
+ls | head -n 7
+ls | head -n 6
+ls | head -n 5
+grep beast ./P01/ApiStarter/data/beowulf.txt
+grep wolf ./P01/ApiStarter/data/beowulf.txt
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep -l sword ./P01/ApiStarter.data/beowulf.txt
+grep -l sword ./P01/ApiStarter/data/beowulf.txt
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+grep -l sword ./P01/ApiStarter/data/beowulf.txt
+history | grep history
+!!
+grep sword ./P01/ApiStarter/data/beowulf.txt
+grep bacon /1000-Spatial_Data_Structures/quad2.txt
+grep history ./P01/ApiStarter/data/beowulf.txt
+ grep beo /1000-Spatial_Data_Structures/ppts/beohead.txt
+grep history ./P01/ApiStarter/data/beowulf.txt
+history | grep history
+history | grep history
+history | grep ls
+history
+history | grep history
+history | grep history
+history | grep history
+history | grep history
+history | grep ls
+history | grep ls
+!!
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+history | grep ls
+!!
+history | grep ls
+history | grep -c ls
+history | grep -c head
+grep -c sword ./P01/ApiStarter/data/beowulf.txt
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+!!
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+history | less
+ls -lh
+ls
+history | grep ls
+history | less
+history | tail
+tail history
+tail /P01/ApiStarter/data/beowulf.txt
+tail ./P01/ApiStarter/data/beowulf.txt
+grep sword ./P01/ApiStarter/data/beowulf.txt
+history
+!!
