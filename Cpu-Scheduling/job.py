@@ -12,9 +12,12 @@ class Job:
         self.burst_type = burst_type
         self.burst_time = burst_time
         self.priority = priority
-        self.wait_time = 0
+        self.ready_wait_time = 0
+        self.wait_wait_time = 0
+        self.io_wait_time = 0
         self.exit_time = 0
         self.cpu_time = 0
+        self.running_time = 0
         self.ML_wait_time = 0
     
     def decrement_burst_time(self):
@@ -22,6 +25,15 @@ class Job:
         
     def increment_cpu_time(self):
         self.cpu_time += 1
+        
+    def increment_io_wait_time(self):
+        self.io_wait_time += 1
+        
+    def get_io_wait_time(self):
+        return self.io_wait_time
+    
+    def increment_running_time(self):
+        self.running_time += 1
         
     def get_cpu_time(self):
         return self.cpu_time
@@ -37,10 +49,21 @@ class Job:
     def get_next_burst(self):
         self.burst_time = self.burst_time[1:]
         self.burst_type = self.burst_type[1:]
+        
+    def get_running_time(self):
+        return self.running_time
     
-    def increment_wait_time(self):
-        self.wait_time += 1
+    def get_ready_wait_time(self):
+        return self.ready_wait_time
+    
+    def get_wait_wait_time(self):
+        return self.wait_wait_time
+    
+    def increment_ready_wait_time(self):
+        self.ready_wait_time += 1
 
+    def increment_wait_wait_time(self):
+        self.wait_wait_time += 1
     def get_wait_time(self):
         return self.wait_time
 

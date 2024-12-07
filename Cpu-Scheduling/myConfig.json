@@ -1,0 +1,17 @@
+{
+  "client_id": "StrombusGigas",
+  "min_jobs": 3,
+  "max_jobs": 3,
+  "min_bursts": 5,
+  "max_bursts": 10,
+  "min_job_interval": 5,
+  "max_job_interval": 10,
+  "burst_type_ratio": 0.7,
+  "min_cpu_burst_interval": 5,
+  "max_cpu_burst_interval": 10,
+  "min_io_burst_interval": 5,
+  "max_io_burst_interval": 10,
+  "min_ts_interval": 1,
+  "max_ts_interval": 1,
+  "priority_levels": [1, 2, 3, 4, 5]
+}
