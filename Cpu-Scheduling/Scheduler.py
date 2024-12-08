@@ -12,7 +12,7 @@ from rich.live import Live
 from rich.layout import Layout
 from rich.align import Align
 import sys
-import keyboard
+from pynput import keyboard
 
 
 def getConfig(file_path):
@@ -44,10 +44,13 @@ def beat(length: int = 1):
     yield
     time.sleep(length * BEAT_TIME)
     
-def toggle_pause():
+def on_press(key):
     global paused
-    paused = not paused
-    console.print("Simulation Paused!" if paused else "Resuming Simulation...")
+    try:
+        if key == keyboard.Key.space:  # If the spacebar is pressed
+            paused = not paused  # Toggle pause state
+    except AttributeError:
+        pass
 
 def myKwargs(argv):
     """This process command line arguments and lets you "configure" the current run.
@@ -94,8 +97,6 @@ if __name__ == "__main__":
     
     console.clear()
     
-   # keyboard.add_hotkey("space", toggle_pause)
-    
     paused = False
     
     tables = []
@@ -125,6 +126,15 @@ if __name__ == "__main__":
         layout.split_column(
             Layout(table)
         )
+        
+    if sched == "ALL":
+        layout.split_column(
+            Layout(table1_centered),
+            Layout(table2_centered),
+            Layout(table3_centered),
+            Layout(table4_centered)
+        )
+    
  
     """
     Initialize queues for different CPU scheduling algorithms:
@@ -186,9 +196,20 @@ if __name__ == "__main__":
 
     clock = start_clock   
     
-    
+    listener = keyboard.Listener(
+        on_press=on_press
+    )
+    listener.start()
     with Live(layout, console=console, refresh_per_second=1750, vertical_overflow="visible") as live:
-                
+        
+        if paused:
+            print("Program paused. Press spacebar to resume.")
+            while paused:  # Stay in this loop until spacebar is pressed again
+                time.sleep(0.1)  # Avoid 100% CPU usage
+        else:
+            print("Program running...")
+            time.sleep(1)  # Simulate work being done
+    
         # region Setting up the tables to display the objects
         if sched == "FCFS" or sched == "ALL":
             with beat(1):
@@ -208,7 +229,7 @@ if __name__ == "__main__":
             with beat(1):
                 table1.add_column("Exit Time", justify="center", style="cyan", no_wrap=True)
                 
-        elif sched == "PB" or sched == "ALL":
+        if sched == "PB" or sched == "ALL":
             with beat(1):
                 table2.add_column("Arrival Time", justify="center", style="cyan", no_wrap=True)
             with beat(1):
@@ -226,7 +247,7 @@ if __name__ == "__main__":
             with beat(1):
                 table2.add_column("Exit Time", justify="center", style="cyan", no_wrap=True)
                 
-        elif sched == "RR" or sched == "ALL":
+        if sched == "RR" or sched == "ALL":
             with beat(1):
                 table3.add_column("Arrival Time", justify="center", style="cyan", no_wrap=True)
             with beat(1):
@@ -244,7 +265,7 @@ if __name__ == "__main__":
             with beat(1):
                 table3.add_column("Exit Time", justify="center", style="cyan", no_wrap=True)
                 
-        elif sched == "MLFQ" or sched == "ALL":
+        if sched == "MLFQ" or sched == "ALL":
             with beat(1):
                 table4.add_column("Arrival Time", justify="center", style="cyan", no_wrap=True)
             with beat(1):
@@ -344,11 +365,11 @@ if __name__ == "__main__":
                                 with beat(5):
                                     if sched == "FCFS" or sched == "ALL":
                                         table1.add_row(str(newjob.get_arrival_time()),f"J{newjob.get_id()}, BT: {newjob.get_burst_type()}"," ", " ", " ", " ", " ")
-                                    elif sched == "PB" or sched == "ALL":
+                                    if sched == "PB" or sched == "ALL":
                                         table2.add_row(str(newjob.get_arrival_time()),f"J{newjob.get_id()}, BT: {newjob.get_burst_type()}"," ", " ", " ", " ", " ")
-                                    elif sched == "RR" or sched == "ALL":
+                                    if sched == "RR" or sched == "ALL":
                                         table3.add_row(str(newjob.get_arrival_time()),f"J{newjob.get_id()}, BT: {newjob.get_burst_type()}"," ", " ", " ", " ", " ")
-                                    elif sched == "MLFQ" or sched == "ALL":   
+                                    if sched == "MLFQ" or sched == "ALL":   
                                         table4.add_row(str(newjob.get_arrival_time()),f"J{newjob.get_id()}, BT: {newjob.get_burst_type()}"," ", " ", " ", " ", " ")
                                 
                         preliminary_jobs.clear()
@@ -373,11 +394,11 @@ if __name__ == "__main__":
                     with beat(5):
                         if sched == "FCFS" or sched == "ALL":
                             update_row(table1, (job.get_id()-1), [str(job.get_arrival_time())," ", f"J{job.get_id()} BT: {job.get_burst_type()}", " ", " ", " ", " ", " "])
-                        elif sched == "PB" or sched == "ALL":
+                        if sched == "PB" or sched == "ALL":
                             update_row(table2, (job.get_id()-1), [str(job.get_arrival_time())," ", f"J{job.get_id()} BT: {job.get_burst_type()}", " ", " ", " ", " ", " "])
-                        elif sched == "RR" or sched == "ALL":
+                        if sched == "RR" or sched == "ALL":
                             update_row(table3, (job.get_id()-1), [str(job.get_arrival_time())," ", f"J{job.get_id()} BT: {job.get_burst_type()}", " ", " ", " ", " ", " "])
-                        elif sched == "MLFQ" or sched == "ALL":   
+                        if sched == "MLFQ" or sched == "ALL":   
                             update_row(table4, (job.get_id()-1), [str(job.get_arrival_time())," ", f"J{job.get_id()} BT: {job.get_burst_type()}", " ", " ", " ", " ", " "])
                     NewQueue.remove(job)        # Remove from New Queue, since it's been added to all queues
             
@@ -505,13 +526,14 @@ if __name__ == "__main__":
                                 # If the job has a higher priority
                                 if PB_job.get_priority() > job.get_priority():
                                     PB_Running.append(job)
-                                    with beat(1):
+                                    with beat(5):
                                         update_row(table2, (job.get_id()-1), [str(job.get_arrival_time()), " ", " " ,f"J{job.get_id()} BT: {job.get_burst_type()} P: {job.get_priority()}", " ", " ", " ", " "])
                                     PB_ReadyQueue.remove(job)
                                     PB_WaitingQueue.append(PB_job)
-                                    with beat(1):
+                                    with beat(5):
                                         update_row(table2, (PB_job.get_id()-1), [str(PB_job.get_arrival_time()), " ", " ", "" ,f"J{PB_job.get_id()}, BT: {PB_job.get_burst_type()}", " ", " ", " "])
                                     PB_Running.remove(PB_job)
+                                    break
                             
                                 else:
                                     job.increment_ready_wait_time()
@@ -749,24 +771,24 @@ if __name__ == "__main__":
                                 MLFQ_ReadyQueue_P3.remove(job)
                                 
                 elif len(MLFQ_ReadyQueue_P4) > 0:
-                    for job in MLFQ_ReadyQueue_P3:
+                    for job in MLFQ_ReadyQueue_P4:
                         job.set_priority(4)
                         # If there's room in the CPU
                         if len(MLFQ_Running) < Num_CPUs:
                             MLFQ_Running.append(job)
                             with beat(5):
                                 update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " "])
-                            MLFQ_ReadyQueue_P3.remove(job)
+                            MLFQ_ReadyQueue_P4.remove(job)
                         
                         else:
                             job.increment_ready_wait_time()
                             job.increment_ML_wait_time()
-                            if job.get_ML_wait_time() == 50:
-                                MLFQ_ReadyQueue_P2.append(job)
+                            if job.get_ML_wait_time() == 75:
+                                MLFQ_ReadyQueue_P3.append(job)
                                 with beat(5):
                                     update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
                                 job.reset_ML_wait_time()
-                                MLFQ_ReadyQueue_P3.remove(job)
+                                MLFQ_ReadyQueue_P4.remove(job)
             
                 for job in MLFQ_Running:
                     if job.get_burst_type() == "IO":
@@ -929,6 +951,11 @@ if __name__ == "__main__":
                             with beat(5):
                                 update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
                             MLFQ_WaitingQueue.remove(job)
+                        elif job.get_priority() == 4:
+                            MLFQ_ReadyQueue_P4.append(job)
+                            with beat(5):
+                                update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
+                            MLFQ_WaitingQueue.remove(job)
                 
                     
                 for job in MLFQ_IO_Queue:
@@ -946,6 +973,11 @@ if __name__ == "__main__":
                             MLFQ_ReadyQueue_P3.append(job)
                             with beat(5):
                                 update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
+                        elif job.get_priority() == 4:
+                            MLFQ_ReadyQueue_P4.append(job)
+                            with beat(5):
+                                update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
+                        
                         MLFQ_IO_Queue.remove(job)
                         
                     else:
@@ -966,6 +998,11 @@ if __name__ == "__main__":
                                 MLFQ_ReadyQueue_P3.append(job)
                                 with beat(5):
                                     update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
+                            elif job.get_priority() == 4:
+                                MLFQ_ReadyQueue_P4.append(job)
+                                with beat(5):
+                                    update_row(table4, (job.get_id()-1), [str(job.get_arrival_time()), " ", f"J{job.get_id()} P: {job.get_priority()}", " ", " ", " ", " ", " "])
+                            
                             MLFQ_IO_Queue.remove(job)
                
             #endregion
@@ -993,30 +1030,75 @@ if __name__ == "__main__":
             clock += 1
             totalTime += 1
             live.update(layout)
-            
+        
+        FCFS_sum = 0   
+        PB_sum = 0
+        RR_sum = 0
+        MLFQ_sum = 0
+        
+        FCFS_ready_sum = 0
+        PB_ready_sum = 0
+        RR_ready_sum = 0
+        MLFQ_ready_sum = 0
+        
+        FCFS_io_sum = 0
+        PB_io_sum = 0
+        RR_io_sum = 0
+        MLFQ_io_sum = 0
+         
         if sched == "ALL" or sched == "FCFS":
             console.print("FCFS")
             for job in FCFS_FinishedQueue:
                 util_percentage = (job.get_running_time() / totalTime) * 100
                 turnaround = job.get_exit_time() - job.get_arrival_time()
+                FCFS_ready_sum += job.get_ready_wait_time()
+                FCFS_io_sum += job.get_io_wait_time()
                 console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-        elif sched == "PB" or sched == "ALL":
+                FCFS_sum += turnaround
+            average_turnaround = FCFS_sum / len(FCFS_FinishedQueue)
+            console.print(f"FCFS Average Turnaround: {average_turnaround} | FCFS Average Ready Wait Time: {FCFS_ready_sum / len(FCFS_FinishedQueue)} | FCFS Average IO Wait Time: {FCFS_io_sum / len(FCFS_FinishedQueue)}")
+        
+        if sched == "PB" or sched == "ALL":
             console.print("PB")
             for job in PB_FinishedQueue:
                 util_percentage = (job.get_running_time() / totalTime) * 100
                 turnaround = job.get_exit_time() - job.get_arrival_time()
                 console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-        elif sched == "RR" or sched == "ALL":
+                PB_sum += turnaround
+                PB_ready_sum += job.get_ready_wait_time()
+                PB_io_sum += job.get_io_wait_time()
+            average_turnaround = PB_sum / len(PB_FinishedQueue)
+            console.print(f"PB Average Turnaround: {average_turnaround} | PB Average Ready Wait Time: {PB_ready_sum / len(PB_FinishedQueue)} | PB Average IO Wait Time: {PB_io_sum / len(PB_FinishedQueue)}")
+        
+        if sched == "RR" or sched == "ALL":
             console.print("RR")
             for job in RR_FinishedQueue:
                 util_percentage = (job.get_running_time() / totalTime) * 100
                 turnaround = job.get_exit_time() - job.get_arrival_time()
                 console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-        elif sched == "MLFQ" or sched == "ALL":
+                RR_sum += turnaround
+                RR_ready_sum += job.get_ready_wait_time()
+                RR_io_sum += job.get_io_wait_time()
+            average_turnaround = RR_sum / len(RR_FinishedQueue)
+            console.print(f"RR Average Turnaround: {average_turnaround} | RR Average Ready Wait Time: {RR_ready_sum / len(RR_FinishedQueue)} | RR Average IO Wait Time: {RR_io_sum / len(RR_FinishedQueue)}")
+        
+        if sched == "MLFQ" or sched == "ALL":
             console.print("MLFQ")
             for job in MLFQ_FinishedQueue:
                 util_percentage = (job.get_running_time() / totalTime) * 100
                 turnaround = job.get_exit_time() - job.get_arrival_time()
                 console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-        
+                MLFQ_sum += turnaround
+                MLFQ_ready_sum += job.get_ready_wait_time()
+                MLFQ_io_sum += job.get_io_wait_time()
+            average_turnaround = MLFQ_sum / len(MLFQ_FinishedQueue)
+            console.print(f"MLFQ Average Turnaround: {average_turnaround} | MLFQ Average Ready Wait Time: {MLFQ_ready_sum / len(MLFQ_FinishedQueue)} | MLFQ Average IO Wait Time: {MLFQ_io_sum / len(MLFQ_FinishedQueue)}")
+            
+        if sched == "ALL":
+            console.print("ALL")
+            all_sum = FCFS_sum + PB_sum + RR_sum + MLFQ_sum
+            all_ready_sum = FCFS_ready_sum + PB_ready_sum + RR_ready_sum + MLFQ_ready_sum
+            all_io_sum = FCFS_io_sum + PB_io_sum + RR_io_sum + MLFQ_io_sum
+            average_turnaround = all_sum / num_jobs
+            console.print(f"ALL Average Turnaround: {average_turnaround} | ALL Average Ready Wait Time: {all_ready_sum / num_jobs} | ALL Average IO Wait Time: {all_io_sum / num_jobs}")
             

@@ -1,7 +1,7 @@
 {
   "client_id": "StrombusGigas",
-  "min_jobs": 3,
-  "max_jobs": 3,
+  "min_jobs": 5,
+  "max_jobs": 5,
   "min_bursts": 5,
   "max_bursts": 10,
   "min_job_interval": 5,
