@@ -14,7 +14,6 @@ from rich.align import Align
 import sys
 from pynput import keyboard
 
-
 def getConfig(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
@@ -44,11 +43,15 @@ def beat(length: int = 1):
     yield
     time.sleep(length * BEAT_TIME)
     
+def toggle_pause():
+    global paused
+    paused = not paused
+
 def on_press(key):
     global paused
     try:
-        if key == keyboard.Key.space:  # If the spacebar is pressed
-            paused = not paused  # Toggle pause state
+        if key == keyboard.Key.space:  # Check if the spacebar is pressed
+            paused = not paused  # Toggle the paused state
     except AttributeError:
         pass
 
@@ -100,6 +103,8 @@ if __name__ == "__main__":
     paused = False
     
     tables = []
+    
+    #region Creating layout
 
     if sched == "FCFS" or sched == "ALL":
         table1 = Table(title="FCFS", show_header=True, show_footer=False, header_style="bold magenta")
@@ -134,7 +139,7 @@ if __name__ == "__main__":
             Layout(table3_centered),
             Layout(table4_centered)
         )
-    
+    #endregion
  
     """
     Initialize queues for different CPU scheduling algorithms:
@@ -196,19 +201,21 @@ if __name__ == "__main__":
 
     clock = start_clock   
     
-    listener = keyboard.Listener(
-        on_press=on_press
-    )
+    listener = keyboard.Listener(on_press=on_press)
     listener.start()
+    
     with Live(layout, console=console, refresh_per_second=1750, vertical_overflow="visible") as live:
         
+        # if keyboard.is_pressed('space'):
+        #     toggle_pause()
+        #     time.sleep(0.5)
+            
         if paused:
             print("Program paused. Press spacebar to resume.")
-            while paused:  # Stay in this loop until spacebar is pressed again
-                time.sleep(0.1)  # Avoid 100% CPU usage
+            while paused:
+                    time.sleep(0.5)  # Debounce
         else:
-            print("Program running...")
-            time.sleep(1)  # Simulate work being done
+            ...
     
         # region Setting up the tables to display the objects
         if sched == "FCFS" or sched == "ALL":
