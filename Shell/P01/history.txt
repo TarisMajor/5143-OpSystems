@@ -712,3 +712,6 @@ tail ./P01/ApiStarter/data/beowulf.txt
 grep sword ./P01/ApiStarter/data/beowulf.txt
 history
 !!
+ls
+history
+history | grep tail

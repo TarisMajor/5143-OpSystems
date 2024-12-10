@@ -1,45 +1,29 @@
-import sys
+import keyboard
+import time
 
-def myKwargs(argv):
-    """This process command line arguments and lets you "configure" the current run.
-       It takes parameters that look like: key=value or num_people=100 (with NO spaces between)
-       and puts them into a python dictionary that looks like:
-       {
-           "key":"value",
-           "num_people":100
-       }
+# This function will be called to display the key pressed
+def on_key_event(event):
+    # Only react to keydown events (key press), not keyup events
+    if event.event_type == keyboard.KEY_DOWN:
+        print(f"Key pressed: {event.name}")
 
-       If a parameter doesn't have an "=" sign in it, it puts it into a list
-       Both the dictionary (kwargs) and list (args) get returned.
-       See usage below under if__name__=='__main__'
-    """
-    kwargs = {}
-    args = []
-    for param in argv:
-        if '=' in param:
-            k, v = param.split('=')
-            if v.isnumeric():
-                kwargs[k] = int(v)
-            else:
-                kwargs[k] = v
-        else:
-            if param.isnumeric():
-                param = int(param)
-            args.append(param)
-
-    return kwargs, args
-
-if __name__ == '__main__':
-    kwargs, args = myKwargs(sys.argv)
-
-    # Extract command-line arguments
-    sched = str(kwargs["sched"])  # First argument (sched)
-    seed = int(kwargs["seed"])  # Second argument (seed)
-    cpus = int(kwargs["cpus"])  # Third argument (cpus)
-    ios = int(kwargs["ios"])   # Fourth argument (ios)
+def main():
+    print("Press any key to trigger on_key_event. Press 'esc' to stop the program.")
     
-    print(sched)
-    print(seed)
-    print(cpus)
-    print(ios)
-    
+    # Start listening for key events
+    keyboard.hook(on_key_event)
+
+    # While loop that runs the program until 'esc' is pressed
+    running = True
+    while running:
+        print("Top")
+
+        # Check for the 'esc' key to stop the loop
+        if keyboard.is_pressed('esc'):
+            running = False
+            print("Exiting the loop.")
+        
+        time.sleep(0.1)  # Slow down the loop to make it readable and prevent CPU overload
+
+if __name__ == "__main__":
+    main()
