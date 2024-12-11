@@ -67,18 +67,20 @@ def wc(**kwargs):
                         else:
                             return(f'Only -l, -m, and -w are supported in this shell.')
                 else:
-                    return(f'Words: {count} Bytes: {c_size}')
+                    return(f'Lines: {lines} Words: {count} Bytes: {c_size} {content}')
 
         else:
             if "." in content:
                 file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, content)
             if DbCommands.file_exists(db_path, content, dir_id):
                 file_contents = DbCommands.get_Content(db_path, file_id, dir_id)
-                                                
+                
+                print(file_contents)
+                
                 for line_number, line in enumerate(file_contents, start=0):
                     lines += 1
                     for word in line:
-                        if word != ' ' or word != '\n':
+                        if word != ' ' and word != '\n' and word != '\t':
                             count += 1
                             for char in word:
                                 chars += 1
@@ -102,5 +104,5 @@ def wc(**kwargs):
                         else:
                             return(f'Only -l, -m, and -w are supported in this shell.')
                 else:
-                    return(f'Words: {count} Bytes: {c_size}')
+                    return(f'Lines: {lines} Words: {count} Bytes: {c_size} {content}')
     

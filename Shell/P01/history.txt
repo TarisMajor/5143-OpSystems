@@ -864,3 +864,284 @@ wc misses.txt
 wc -l misses.txt
 wc -m misses.txt
 wc -c misses.txt
+wc misses.txt
+wc misses.txt
+wc misses.txt
+wc misses.txt
+[A!
+wc misses.txt
+wc testfile.txt
+wc beohead.txt
+wc testls.txt
+cat misses.txt misses.txt
+ls -l
+cd ppts
+cat misses.txt misses.txt > mis2.txt
+ls -l
+cd ..
+ls -l
+cd ppts
+cat misses.txt misses.txt > mis3.txt
+ls
+ls -l
+cd ..
+ls -l
+cd ppts
+cat misses.txt misses.txt > mis4.txt
+ls
+cd ..
+ls
+cat misses.txt misses.txt > mis5.txt
+ls
+ls -l
+cd ppts
+who
+ls
+ls -l
+cat misses.txt
+cat misses.txt > m1.txt
+cd ppts
+ls
+cat misses.txt > m2.txt
+ls
+cwd
+ls
+cwd
+cd ppts
+cwd
+ls -l
+cat testls.txt
+cat textls.txt > pop.txt
+ls
+cd ppts
+cwd
+cat testls.txt > pop.txt
+cd ppts
+cwd
+cat testls.txt > pop.txt
+ls
+cd ppts
+ls
+cwd
+ls
+cd ppts
+ls
+cwd
+ls
+cd ppts
+ls
+ls
+ls
+cd ppts
+cwd
+ls
+cd ppts
+cwd
+ls
+cd ppts
+ls
+cwd
+n
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+cwd
+ls
+cwd
+cd ppts
+cwd
+ls
+ls
+cd
+cd ppts
+cd ppts
+cd ..
+ls
+ls
+ls
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+cd ppts
+ls
+ls
+cd ppts
+cwd
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+ls
+ls
+cd ppts
+cat misses.txt > pip.txt
+ls
+cd ppts
+ls
+cat m1.txt > pip.txt
+ls
+cd ppts
+ls
+cat m1.txt > pip.txt
+ls
+ls -l
+cd ppts
+ls -l
+cat testls.txt
+cat testls.txt > blam.txt
+ls
+ls -l
+cat testls.txt > getWRECKED/kaplow.txt
+cd ppts
+cat testls.txt > getWRECKED/kaplow.txt
+cd ppts
+cat testls.txt > getWRECKED/kaplow.txt
+cd
+cd ppts
+cat testls.txt > getWRECKED/kaplow.txt
+ls -l
+cd getWRECKED
+ls
+ls -l
+cat misses.txt misses.txt > kaboom.txt
+ls
+ls -l
+cat kaboom.txt
+cat kabbom.txt
+cat kaboom.txt
+cat kaboom.txt
+cat kaboom.txt\r
+cat kaplow.txt
+ls
+cd ppts
+ls
+cd getWRECKED
+ls
+cat kaplow.txt
+cd ppts
+cd getWRECKED
+ls
+cat testls.txt
+cat testls.txt > kablooey.txt
+ls
+cat kablooey.txt
+ls
+cd ppts
+cd getWRECKED
+ls
+cat kaplow.txt
+cat kaplow.txt
+cat kaplow.txt
+cat kaplow.txt
+cd ppts
+cd getWRECKED
+cat kaplow.txt
+cat testls.txt > getWRECKED/blammo.txt
+cd
+cd ppts
+cd getWRECKED
+ls
+cat blammo.txt
+cat blammo.txt\r
+cat blammo.txtr
+cat blammo.txt
+cat blammo.txt
+cat beohead.txt
+cat crash_data_missed_summary.txt
+cat m1.txt
+ls
+cd ppts
+ls
+cat testls.txt
+cat testls.txt > push.txt
+ls
+cat push.txt
+cat testls.txt > push.txt
+cat push.txt
+cat push.txt
+cat misses.txt
+cat misses.txt misses.txt
+cat misses.txt testls.txt
+cat misses.txt testls.txt >> testls.txt
+cat misses.txt
+cd ppts
+cd getWRECKED
+cat misses.txt testls.txt >> blammo.txt
+cat misses.txt > blammo.txt
+ls
+cat blammo.txt
+cat misses.txt > blammo.txt
+cat blammo.txt
+ls
+cd ppts
+ls
+rm push.txt
+rm ppts/push.txt
+cd
+rm pop.txt
+rm m2.txt
+cd ppts
+cd getWRECKED
+ls
+rm blammo.txt
+rm testls.txt
+ls
+cd ppts
+ls
+rmdir getWRECKED
+rmdir testing
+ls
+cd ppts
+ls
+mkdir tests
+ls
+ls
+cd ppts
+ls
+cd tests
+ls
+cd ..
+cat misses.txt > boom.txt
+ls
+cat misses.txt > boom.txt
+cd ppts
+ls
+cat misses.txt
+cat misses.txt > tests/misses32.txt
+ls
+cd tests
+ls
+cat misses32.txt
+cat misses.txt >> misses32.txt
+cat misses.txt > misses32.txt
+cat misses32.txt
+ls

@@ -1,3 +1,5 @@
+# shell.py
+
 import importlib
 import pkgutil
 import sqlite3
@@ -12,19 +14,19 @@ import sys
 # Dictionary to store the commands
 cmds = {}
 
-# Set the current working directory 
-global cwd
-cwd = "/1000-Spatial_Data_Structures"
-db_path = './P01/ApiStarter/data/filesystem.db' 
-console = Console()
-
 def get_CWD():
+    global cwd
     return cwd
 
 # Modify the cwd to be called by other functions
 def modify_CWD(new_cwd):
     global cwd
     cwd = new_cwd
+
+# Set the current working directory 
+cwd = '/1000-Spatial_Data_Structures'
+db_path = './P01/ApiStarter/data/filesystem.db' 
+console = Console()
 
 # Connect to SqLite database
 def connSqLite(dbPath):
@@ -169,7 +171,6 @@ def getCommands(commands):
 if __name__ == "__main__":
     # Load the commands dynamically from Command_Packages
     load_commands()
-    
     getch = Getch()                             # create instance of our getch class
     prompt = "%Testing:"                        # set default prompt
     input = ""
@@ -183,6 +184,7 @@ if __name__ == "__main__":
         commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
     
         results = ''
+        
         
         if commandList[0]["cmd"] == "~":
             loop = False
@@ -204,6 +206,8 @@ if __name__ == "__main__":
                 # Call the function dynamically from the dictionary
                 if cmd in cmds:
                     results = cmds[cmd](**kwargs)
+                    if cmd == "cd":
+                        cwd = results
                     if commandList[i] == commandList[-1]:
                         pass
                     else:
@@ -212,13 +216,22 @@ if __name__ == "__main__":
                 
                 else:
                     print(f"Command '{cmd}' not found.")
-                    
+                
+                position = cwd
+                
                 if redirect:
-                    redirect = redirect.split('/')
-                    redirect = redirect[1:]
-                    redirect_dir = redirect[-2]
-                    redirect = redirect[-1]
-                    
+                    if "/" in redirect:
+                        redirect = redirect.split('/')
+                        redirect_dir = redirect[-2]
+                        redirect = redirect[-1]
+                    else:
+                        position = position.split('/')
+                        position = position[1:]
+                        redirect_dir = position[-1]
+                        if "\r" in redirect:
+                            redirect = redirect.split('\r')
+                            redirect = redirect[1]
+                        
                     if DbCommands.dir_exists(db_path, redirect_dir):
                         dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
                         
@@ -228,21 +241,24 @@ if __name__ == "__main__":
                             results = DbCommands.new_file(db_path, redirect, results, dir_id)
                 
                 if append:
-                    append = append.split('/')
-                    append = append[1:]
-                    append_dir = append[-2]
-                    append = append[-1]
-                    
+                    if "/" in append:
+                        append = append.split('/')
+                        append_dir = append[-2]
+                        append = append[-1]
+                    else:
+                        position = position.split('/')
+                        position = position[1:]
+                        append_dir = position[-1]
+                        if "\r" in append:
+                            append = append.split('\r')
+                            append = append[1]
+                        
                     if DbCommands.dir_exists(db_path, append_dir):
-                        print('Dir exists.')
                         dir_id = DbCommands.get_dir_id(db_path, append_dir)
-                        print(dir_id, append)
                         if DbCommands.file_exists(db_path, append, dir_id):
                             results = DbCommands.append_contents(db_path, append, dir_id, results)
                         else:
                             results = 'The file you are appending does not exist.'
-                    else:
-                        results = 'The directory does not exist.'
             
             console.print(results)
     sys.exit(0)

@@ -28,19 +28,18 @@ def rm(**kwargs):
     
     name = params[0]
     
-    if "/" in cwd:
-        paths = cwd.split("/")
-        paths = paths[1:]
-        path = paths[-1]
-        
-    
-    if flags:
-        return(f'This function does not accept flags.')
+    if '.' in name:
+        if DbCommands.this_file_exists(db_path, name):
+            file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, name)
+            result = DbCommands.remove_file(db_path, name, dir_id)
+            return(result)
+        else:
+            return(f'The file does not exist.')
     else:
         if DbCommands.dir_exists(db_path, name):
-            return(f'The directory already exists.')
-        else:
-            dir = DbCommands.get_dir_id(db_path, path)
-            print(dir)
-            result = DbCommands.create_directory(db_path, name, dir)
+            dir_id = DbCommands.get_dir_id(db_path, name)
+            result = DbCommands.remove_directory(db_path, name, dir_id)
             return(result)
+        else:
+            return(f'The directory does not exist.')
+        
