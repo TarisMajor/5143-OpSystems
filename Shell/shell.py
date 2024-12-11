@@ -47,7 +47,6 @@ def load_commands():
             if callable(obj) and not name.startswith("__"):
                 cmds[name] = obj
 
-
 # Get the docstring of a function
 def get_docstring(func_name):
     if func_name in cmds:
@@ -158,14 +157,14 @@ def getCommands(commands):
             break
             
         elif char == "~":
+            global loop
             print(" ")
-            input = False
+            loop = False
             break
         
         sys.stdout.write(char)
         sys.stdout.flush()
     return input
-
 
 if __name__ == "__main__":
     # Load the commands dynamically from Command_Packages
@@ -175,69 +174,76 @@ if __name__ == "__main__":
     prompt = "%Testing:"                        # set default prompt
     input = ""
     loop = True
-    ShellPrompt(prompt)                         #Print the prompt to the screen
+    while loop:
+        
+        ShellPrompt(prompt)                         #Print the prompt to the screen
 
-    command = getCommands(input)                #Uses getch to get a string from the user
-                
-    commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
-   
-    results = ''
+        command = getCommands(input)                #Uses getch to get a string from the user
+                    
+        commandList, redirect, append = parse(command)     #Parses the string into a list of dictionaries
     
-    it = 0
-    data = 0
-    
-    for i in range(len(commandList)):
-        cmd = commandList[i]["cmd"]
-        flags = commandList[i]["flags"]
-        params = commandList[i]["params"]
-        if it == 0:
-            pass
-        else:
-            params.append(data)
-        kwargs = {"flags":flags, "params": params}
-        # Call the function dynamically from the dictionary
-        if cmd in cmds:
-            results = cmds[cmd](**kwargs)
-            if commandList[i] == commandList[-1]:
-                pass
-            else:
-                it =+ 1
-                data = results
+        results = ''
         
+        if commandList[0]["cmd"] == "~":
+            loop = False
+            
         else:
-            print(f"Command '{cmd}' not found.")
-            
-        if redirect:
-            redirect = redirect.split('/')
-            redirect = redirect[1:]
-            redirect_dir = redirect[-2]
-            redirect = redirect[-1]
-            
-            if DbCommands.dir_exists(db_path, redirect_dir):
-                dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
-                
-                if DbCommands.file_exists(db_path, redirect, dir_id):
-                    results = 'This file already exists.'
-                else:           
-                    results = DbCommands.new_file(db_path, redirect, results, dir_id)
         
-        if append:
-            append = append.split('/')
-            append = append[1:]
-            append_dir = append[-2]
-            append = append[-1]
+            it = 0
+            data = 0
             
-            if DbCommands.dir_exists(db_path, append_dir):
-                print('Dir exists.')
-                dir_id = DbCommands.get_dir_id(db_path, append_dir)
-                print(dir_id, append)
-                if DbCommands.file_exists(db_path, append, dir_id):
-                    results = DbCommands.append_contents(db_path, append, dir_id, results)
+            for i in range(len(commandList)):
+                cmd = commandList[i]["cmd"]
+                flags = commandList[i]["flags"]
+                params = commandList[i]["params"]
+                if it == 0:
+                    pass
                 else:
-                    results = 'The file you are appending does not exist.'
-            else:
-                results = 'The directory does not exist.'
+                    params.append(data)
+                kwargs = {"flags":flags, "params": params}
+                # Call the function dynamically from the dictionary
+                if cmd in cmds:
+                    results = cmds[cmd](**kwargs)
+                    if commandList[i] == commandList[-1]:
+                        pass
+                    else:
+                        it =+ 1
+                        data = results
+                
+                else:
+                    print(f"Command '{cmd}' not found.")
+                    
+                if redirect:
+                    redirect = redirect.split('/')
+                    redirect = redirect[1:]
+                    redirect_dir = redirect[-2]
+                    redirect = redirect[-1]
+                    
+                    if DbCommands.dir_exists(db_path, redirect_dir):
+                        dir_id = DbCommands.get_dir_id(db_path, redirect_dir)
+                        
+                        if DbCommands.file_exists(db_path, redirect, dir_id):
+                            results = 'This file already exists.'
+                        else:           
+                            results = DbCommands.new_file(db_path, redirect, results, dir_id)
+                
+                if append:
+                    append = append.split('/')
+                    append = append[1:]
+                    append_dir = append[-2]
+                    append = append[-1]
+                    
+                    if DbCommands.dir_exists(db_path, append_dir):
+                        print('Dir exists.')
+                        dir_id = DbCommands.get_dir_id(db_path, append_dir)
+                        print(dir_id, append)
+                        if DbCommands.file_exists(db_path, append, dir_id):
+                            results = DbCommands.append_contents(db_path, append, dir_id, results)
+                        else:
+                            results = 'The file you are appending does not exist.'
+                    else:
+                        results = 'The directory does not exist.'
             
-    console.print(results)
+            console.print(results)
     sys.exit(0)
         

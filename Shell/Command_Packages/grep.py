@@ -168,6 +168,7 @@ def grep(**kwargs):
       else:
          for i in range(len(string)):
             console.print(string[i])
+   return(" ")
     
          
                     

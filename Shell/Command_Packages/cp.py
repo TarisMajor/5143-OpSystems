@@ -1,6 +1,7 @@
 # Command_Packages/cp.py
 from .dbCommands import DbCommands
 import base64
+from shell import get_CWD
 
 db_path = './P01/ApiStarter/data/filesystem.db'  
 
@@ -32,20 +33,29 @@ def cp(**kwargs):
         if len(params) > 1:
             # We split the file paths of source and destination
             copy_file = params[0]
-            copy_file = copy_file.split('/')
-            copy_file = copy_file[1:]
-            copy_dir = copy_file[-2]
-            copy_file = copy_file[-1]
-            
+            print(copy_file)
+            if "/" in copy_file:
+                copy_file = copy_file.split('/')
+                copy_file = copy_file[1:]
+                copy_dir = copy_file[-2]
+                copy_file = copy_file[-1]
+                copy_dir_id = DbCommands.get_dir_id(db_path, copy_dir)
+            else:
+                copy_id, copy_dir_id = DbCommands.get_file_and_dir_id(db_path, copy_file)
+                
             paste_file = params[1]
-            paste_file = paste_file.split('/')
-            paste_file = paste_file[1:]
-            paste_dir = paste_file[-2]
-            paste_file = paste_file[-1]
+            
+            
+            if "/" in paste_file:
+                paste_file = paste_file.split('/')
+                paste_dir = paste_file[-2]
+                paste_file = paste_file[-1]
+                                
+                paste_dir_id = DbCommands.get_dir_id(db_path, paste_dir)
+            else:
+                paste_id, paste_dir_id = DbCommands.get_file_and_dir_id(db_path, paste_file)
             
             # Get the directory id of the files
-            copy_dir_id = DbCommands.get_dir_id(db_path, copy_dir)
-            paste_dir_id = DbCommands.get_dir_id(db_path, paste_dir)
             
             if DbCommands.file_exists(db_path, copy_file, copy_dir_id):
                 if DbCommands.file_exists(db_path, paste_file, paste_dir_id):

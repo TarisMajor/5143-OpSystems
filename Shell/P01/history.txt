@@ -715,3 +715,152 @@ history
 ls
 history
 history | grep tail
+ls
+ls -l
+ls -la
+ls -lah
+grep the ./P01/ApiStarter/data/beowulf.txt
+history
+history | grep less
+ls
+ls -l
+history
+history | grep less
+grep the ./P01/ApiStarter/data/beowulf.txt
+ls
+ls
+ls
+ls
+ls -l
+ls
+mkdir testing
+ls
+mkdir papers
+mkdir testing
+mkdir testing
+mkdir home
+[A[Bmkdir home
+mkdir home
+cp /1000-Spatial_Data_Structures/ppts/testls.txt /1000-Spatial_Data_Structures/home/testing.txt
+rmdir home
+rmdir home
+rmdir home
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls -l
+cd papers
+ls
+ls -l
+cd ..
+ls
+cd ppts
+ls
+ls -l
+ls
+cd images
+ls
+cd ..
+cd quadtree.zip
+cd
+ls
+ls -l
+cd ppts
+ls
+ls -l
+cd
+ls
+ls
+cd ppts
+ls -l
+cd
+ls
+history
+history | grep hi
+ls
+cd ppts
+ls
+mkdir getWRECKED
+ls
+ls -l
+ls
+who
+ls
+ls -lh
+ls
+ls -l
+ls
+ls -l
+ls
+ls -l
+cd ppts
+ls
+ls -l
+who
+cd getWRECKED
+ls
+cd ..
+ls -l
+cd testls.txt getWRECKED/pimp.txt
+cp testls.txt getWRECKED/pimp.txt
+ls
+cd ppts
+ls
+cp testls.txt getWRECKED/pump.txt
+ls
+cd ppts
+ls
+cp testls.txt getWRECKED/pimp.txt
+cd ppts
+cp testls.txt getWRECKED/pimp.txt
+cd ppts
+cp testls.txt getWRECKED/pimp.txt
+cd ppts
+cp testls.txt getWRECKED/pimp.txt
+cd ppts
+ls
+cp testls.txt getWRECKED/pimp.txt
+ls
+ls -l
+cd data
+ls
+cd ..
+ls
+cd python_code
+ls -l
+cd Btree
+ls -l
+cd
+ls -l
+chmod 777 topological_relations.png
+chmod 777 topological_relations.png
+ls -l
+chmod 600 topological_relations.png
+ls -l
+chmod 77 topological_relations.png
+ls -l
+chmod 00 geo.py
+ls -l
+chmod 32 geo.py
+ls -l
+chmod 00 testing
+ls -l
+chmod 55 testing
+ls -l
+wc misses.txt
+wc misses.txt
+wc misses.txt
+wc misses.txt
+wc -l misses.txt
+wc misses.txt
+wc -l misses.txt
+wc -m misses.txt
+wc -c misses.txt

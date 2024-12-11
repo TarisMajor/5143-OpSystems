@@ -152,12 +152,8 @@ class DbCommands:
             
         cursor.execute("SELECT id FROM directories WHERE name=?", (name,))
         dir_id = cursor.fetchone()
-    
-        did = int
-        # Fetch the result
-    
-        for id in dir_id:
-            did = id
+        
+        did = dir_id[0]
 
         # Close the connection
         cursor.close()
@@ -212,6 +208,52 @@ class DbCommands:
         
         return(f"Change Successful.")
     
+    def change_directory_permissions(db_path, name, new_permissions):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        digit_list = [int(digit) for digit in str(new_permissions)]
+        
+        reg_permissions = digit_list[0]
+       
+        world_permissions = digit_list[1]
+        
+        binary_reg = bin(reg_permissions)[2:].zfill(3)
+        
+        binary_world = bin(world_permissions)[2:].zfill(3)
+        
+        rp = binary_reg[0]
+        wp = binary_reg[1]
+        xp = binary_reg[2]
+        
+        wrp = binary_world[0]
+        wwp = binary_world[1]
+        wxp = binary_world[2]
+        
+        r_query = """
+        UPDATE directories
+        SET read_permission = ?,
+            write_permission = ?,
+            execute_permission = ?
+        WHERE name = ?
+        """
+        
+        world_query = """
+        UPDATE directories
+        SET world_read = ?,
+            world_write = ?,
+            world_execute = ?
+        WHERE name = ?
+        """
+
+        # Query to check if the file exists
+        cursor.execute(r_query, (rp, wp, xp, name))
+        cursor.execute(world_query, (wrp, wwp, wxp, name))
+        conn.commit()
+        conn.close()
+        
+        return(f"Change Successful.")
     def get_file_and_dir_id(db_path, name):
         """
         Check if a file exists in the SQLite database.
@@ -266,11 +308,9 @@ class DbCommands:
         # Connect to the SQLite database
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        print('got into exists')
         
         name = str(name)
         dir_id = str(dir_id)
-        print(f'name = {name} and pid = {dir_id}')
         
         query = """
             SELECT EXISTS (SELECT 1 FROM files WHERE name = ? AND pid = ?);
@@ -281,7 +321,6 @@ class DbCommands:
     
         # Fetch the result
         exists = cursor.fetchone()[0] == 1   # returns True if exists, False otherwise
-        print(exists)
         conn.close()
 
         return bool(exists)
@@ -339,8 +378,55 @@ class DbCommands:
                 
         return listing
     
+    def create_directory(db_path, name, dir_id):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        query = """
+        
+        INSERT INTO directories (name, pid, oid, created_at, modified_at, read_permission, write_permission, execute_permission, world_read, world_write, world_execute)
+        VALUES (?, ?, 1, DATETIME('now'), DATETIME('now'), 1, 0, 1, 1, 0, 1)
+        """
+
+        # Query to check if the file exists
+        cursor.execute(query, (name, dir_id))
+        conn.commit()
+        conn.close()
+        
+        return(f"Directory {name} created.")
     
-    
+    def remove_directory(db_path, name, id):
+        # Connect to the SQLite database
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        if id == 1:
+            return("Cannot remove root directory.")
+        
+        query = """
+        
+        DELETE FROM directories
+        WHERE name = ? AND id = ?
+        
+        """
+        
+        # Query to check if the file exists
+        cursor.execute(query, (name, id))
+        conn.commit()
+        
+        query = """
+        
+        DELETE FROM files
+        WHERE pid = ?
+        
+        """
+        
+        cursor.execute(query, (id,))
+        conn.commit()
+        conn.close()
+        
+        return(f"Directory {name} removed with all files.")
     def get_long_listing(db_path, dir_id, flags):
          # Connect to the SQLite database
         conn = sqlite3.connect(db_path)
@@ -407,6 +493,8 @@ class DbCommands:
                 temp_table.insert(len(temp_table), directory_permissions)
                 temp_table.insert(len(temp_table), directory_size)
                 temp_table.extend(directory_dates)
+            # name = Text(name)
+            # name.stylize("cyan")
             temp_table.insert(len(temp_table), name)
             
             table.append(temp_table)

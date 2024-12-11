@@ -14,6 +14,7 @@ from rich.layout import Layout
 from rich.align import Align
 import sys
 import keyboard
+import csv
 
 def getConfig(file_path):
     with open(file_path, 'r') as file:
@@ -44,14 +45,6 @@ def beat(length: int = 1):
     yield
     time.sleep(length * BEAT_TIME)
     
-def toggle_pause():
-    global paused
-    paused = not paused
-    while True:
-        if keyboard.is_pressed('space'):
-            paused = not paused
-            time.sleep(0.5)  # Prevent bouncing of spacebar key press
-
 def key_pressed(event):
         global paused
         if event.event_type == keyboard.KEY_DOWN:  # Only process key press events
@@ -212,10 +205,7 @@ if __name__ == "__main__":
     
     paused_text = Text("PAUSED", style="bold red")
     unpaused_text = Text("UNPAUSED", style="bold red")
-    
-    # listener = keyboard.Listener(on_press=on_press)
-    # listener.start()
-    
+        
     with Live(layout, console=console, refresh_per_second=1750, vertical_overflow="visible") as live:
         
     
@@ -1070,60 +1060,77 @@ if __name__ == "__main__":
         PB_io_sum = 0
         RR_io_sum = 0
         MLFQ_io_sum = 0
-         
-        if sched == "ALL" or sched == "FCFS":
-            console.print("FCFS")
-            for job in FCFS_FinishedQueue:
-                util_percentage = (job.get_running_time() / totalTime) * 100
-                turnaround = job.get_exit_time() - job.get_arrival_time()
-                FCFS_ready_sum += job.get_ready_wait_time()
-                FCFS_io_sum += job.get_io_wait_time()
-                console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-                FCFS_sum += turnaround
-            average_turnaround = FCFS_sum / len(FCFS_FinishedQueue)
-            console.print(f"FCFS Average Turnaround: {average_turnaround} | FCFS Average Ready Wait Time: {FCFS_ready_sum / len(FCFS_FinishedQueue)} | FCFS Average IO Wait Time: {FCFS_io_sum / len(FCFS_FinishedQueue)}")
         
-        if sched == "PB" or sched == "ALL":
-            console.print("PB")
-            for job in PB_FinishedQueue:
-                util_percentage = (job.get_running_time() / totalTime) * 100
-                turnaround = job.get_exit_time() - job.get_arrival_time()
-                console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-                PB_sum += turnaround
-                PB_ready_sum += job.get_ready_wait_time()
-                PB_io_sum += job.get_io_wait_time()
-            average_turnaround = PB_sum / len(PB_FinishedQueue)
-            console.print(f"PB Average Turnaround: {average_turnaround} | PB Average Ready Wait Time: {PB_ready_sum / len(PB_FinishedQueue)} | PB Average IO Wait Time: {PB_io_sum / len(PB_FinishedQueue)}")
-        
-        if sched == "RR" or sched == "ALL":
-            console.print("RR")
-            for job in RR_FinishedQueue:
-                util_percentage = (job.get_running_time() / totalTime) * 100
-                turnaround = job.get_exit_time() - job.get_arrival_time()
-                console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-                RR_sum += turnaround
-                RR_ready_sum += job.get_ready_wait_time()
-                RR_io_sum += job.get_io_wait_time()
-            average_turnaround = RR_sum / len(RR_FinishedQueue)
-            console.print(f"RR Average Turnaround: {average_turnaround} | RR Average Ready Wait Time: {RR_ready_sum / len(RR_FinishedQueue)} | RR Average IO Wait Time: {RR_io_sum / len(RR_FinishedQueue)}")
-        
-        if sched == "MLFQ" or sched == "ALL":
-            console.print("MLFQ")
-            for job in MLFQ_FinishedQueue:
-                util_percentage = (job.get_running_time() / totalTime) * 100
-                turnaround = job.get_exit_time() - job.get_arrival_time()
-                console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
-                MLFQ_sum += turnaround
-                MLFQ_ready_sum += job.get_ready_wait_time()
-                MLFQ_io_sum += job.get_io_wait_time()
-            average_turnaround = MLFQ_sum / len(MLFQ_FinishedQueue)
-            console.print(f"MLFQ Average Turnaround: {average_turnaround} | MLFQ Average Ready Wait Time: {MLFQ_ready_sum / len(MLFQ_FinishedQueue)} | MLFQ Average IO Wait Time: {MLFQ_io_sum / len(MLFQ_FinishedQueue)}")
+        # Writing to a csv file
+        with open('output.csv', 'w', newline='') as file:
+            writer = csv.writer(file, delimiter=' ')
             
-        if sched == "ALL":
-            console.print("ALL")
-            all_sum = FCFS_sum + PB_sum + RR_sum + MLFQ_sum
-            all_ready_sum = FCFS_ready_sum + PB_ready_sum + RR_ready_sum + MLFQ_ready_sum
-            all_io_sum = FCFS_io_sum + PB_io_sum + RR_io_sum + MLFQ_io_sum
-            average_turnaround = all_sum / num_jobs
-            console.print(f"ALL Average Turnaround: {average_turnaround} | ALL Average Ready Wait Time: {all_ready_sum / num_jobs} | ALL Average IO Wait Time: {all_io_sum / num_jobs}")
+            if sched == "ALL" or sched == "FCFS":
+                console.print("FCFS")
+                writer.writerow("FCFS")
+                for job in FCFS_FinishedQueue:
+                    util_percentage = (job.get_running_time() / totalTime) * 100
+                    turnaround = job.get_exit_time() - job.get_arrival_time()
+                    FCFS_ready_sum += job.get_ready_wait_time()
+                    FCFS_io_sum += job.get_io_wait_time()
+                    console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    writer.writerow(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    FCFS_sum += turnaround
+                average_turnaround = FCFS_sum / len(FCFS_FinishedQueue)
+                console.print(f"FCFS Average Turnaround: {average_turnaround} | FCFS Average Ready Wait Time: {FCFS_ready_sum / len(FCFS_FinishedQueue)} | FCFS Average IO Wait Time: {FCFS_io_sum / len(FCFS_FinishedQueue)}")
+                writer.writerow(f"FCFS Average Turnaround: {average_turnaround} | FCFS Average Ready Wait Time: {FCFS_ready_sum / len(FCFS_FinishedQueue)} | FCFS Average IO Wait Time: {FCFS_io_sum / len(FCFS_FinishedQueue)}")
             
+            if sched == "PB" or sched == "ALL":
+                console.print("PB")
+                writer.writerow("PB")
+                for job in PB_FinishedQueue:
+                    util_percentage = (job.get_running_time() / totalTime) * 100
+                    turnaround = job.get_exit_time() - job.get_arrival_time()
+                    console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    writer.writerow(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    PB_sum += turnaround
+                    PB_ready_sum += job.get_ready_wait_time()
+                    PB_io_sum += job.get_io_wait_time()
+                average_turnaround = PB_sum / len(PB_FinishedQueue)
+                console.print(f"PB Average Turnaround: {average_turnaround} | PB Average Ready Wait Time: {PB_ready_sum / len(PB_FinishedQueue)} | PB Average IO Wait Time: {PB_io_sum / len(PB_FinishedQueue)}")
+                writer.writerow(f"PB Average Turnaround: {average_turnaround} | PB Average Ready Wait Time: {PB_ready_sum / len(PB_FinishedQueue)} | PB Average IO Wait Time: {PB_io_sum / len(PB_FinishedQueue)}")
+            
+            if sched == "RR" or sched == "ALL":
+                console.print("RR")
+                writer.writerow("RR")
+                for job in RR_FinishedQueue:
+                    util_percentage = (job.get_running_time() / totalTime) * 100
+                    turnaround = job.get_exit_time() - job.get_arrival_time()
+                    console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    writer.writerow(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    RR_sum += turnaround
+                    RR_ready_sum += job.get_ready_wait_time()
+                    RR_io_sum += job.get_io_wait_time()
+                average_turnaround = RR_sum / len(RR_FinishedQueue)
+                console.print(f"RR Average Turnaround: {average_turnaround} | RR Average Ready Wait Time: {RR_ready_sum / len(RR_FinishedQueue)} | RR Average IO Wait Time: {RR_io_sum / len(RR_FinishedQueue)}")
+                writer.writerow(f"RR Average Turnaround: {average_turnaround} | RR Average Ready Wait Time: {RR_ready_sum / len(RR_FinishedQueue)} | RR Average IO Wait Time: {RR_io_sum / len(RR_FinishedQueue)}")
+            
+            if sched == "MLFQ" or sched == "ALL":
+                console.print("MLFQ")
+                writer.writerow("MLFQ")
+                for job in MLFQ_FinishedQueue:
+                    util_percentage = (job.get_running_time() / totalTime) * 100
+                    turnaround = job.get_exit_time() - job.get_arrival_time()
+                    console.print(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    writer.writerow(f"J{job.get_id()} | Running Time: {job.get_running_time()} | Utilization: {util_percentage:.2f}% | Turnaround: {turnaround}")
+                    MLFQ_sum += turnaround
+                    MLFQ_ready_sum += job.get_ready_wait_time()
+                    MLFQ_io_sum += job.get_io_wait_time()
+                average_turnaround = MLFQ_sum / len(MLFQ_FinishedQueue)
+                console.print(f"MLFQ Average Turnaround: {average_turnaround} | MLFQ Average Ready Wait Time: {MLFQ_ready_sum / len(MLFQ_FinishedQueue)} | MLFQ Average IO Wait Time: {MLFQ_io_sum / len(MLFQ_FinishedQueue)}")
+                writer.writerow(f"MLFQ Average Turnaround: {average_turnaround} | MLFQ Average Ready Wait Time: {MLFQ_ready_sum / len(MLFQ_FinishedQueue)} | MLFQ Average IO Wait Time: {MLFQ_io_sum / len(MLFQ_FinishedQueue)}")
+                
+            if sched == "ALL":
+                console.print("ALL")
+                all_sum = FCFS_sum + PB_sum + RR_sum + MLFQ_sum
+                all_ready_sum = FCFS_ready_sum + PB_ready_sum + RR_ready_sum + MLFQ_ready_sum
+                all_io_sum = FCFS_io_sum + PB_io_sum + RR_io_sum + MLFQ_io_sum
+                average_turnaround = all_sum / num_jobs
+                console.print(f"ALL Average Turnaround: {average_turnaround} | ALL Average Ready Wait Time: {all_ready_sum / num_jobs} | ALL Average IO Wait Time: {all_io_sum / num_jobs}")
+                writer.writerow(f"ALL Average Turnaround: {average_turnaround} | ALL Average Ready Wait Time: {all_ready_sum / num_jobs} | ALL Average IO Wait Time: {all_io_sum / num_jobs}")
+                

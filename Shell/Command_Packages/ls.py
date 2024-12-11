@@ -1,5 +1,4 @@
 # Command_Packages/ls.py
-from shell import cwd
 from shell import get_CWD
 from .dbCommands import DbCommands
 
@@ -36,7 +35,6 @@ def ls(**kwargs):
     valid_flags = ["l", "a", "h"]
             
     cwd = get_CWD()
-    
     if "/" in cwd:
         paths = cwd.split("/")
         paths = paths[1:]
@@ -56,7 +54,7 @@ def ls(**kwargs):
                     dir_id = DbCommands.get_dir_id(db_path, param)
                     listing = DbCommands.get_listing(db_path, dir_id)
                 else:
-                    return("Directory does not exist.")
+                    return("Directory params does not exist.")
             
     else:
         if "/" in cwd:
@@ -69,7 +67,7 @@ def ls(**kwargs):
                     dir_id = DbCommands.get_dir_id(db_path, param)
                     listing = DbCommands.get_listing(db_path, dir_id)
                 else:
-                    return("Directory does not exist.")
+                    return("Directory else does not exist.")
            
     if flags:
         name = paths[-1]

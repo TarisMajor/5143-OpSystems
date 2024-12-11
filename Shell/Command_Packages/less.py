@@ -3,6 +3,7 @@ import shutil
 from Command_Packages.getch import Getch
 from Command_Packages.dbCommands import DbCommands
 import os
+from shell import get_CWD
 
 db_path = './P01/ApiStarter/data/filesystem.db'
 
@@ -30,7 +31,9 @@ def less(**kwargs):
     size = len(file.encode('utf-8'))
     
     getch = Getch()
-        
+    
+    cwd = get_CWD()
+    
     contents = []
     
     if size < 100:

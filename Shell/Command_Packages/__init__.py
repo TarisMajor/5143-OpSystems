@@ -10,5 +10,6 @@ from .mv import mv
 from .dbCommands import DbCommands
 from .exclamation import exclamation
 from .head import head
+from .rmdir import rmdir
 
-__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands", "exclamation", "head"]
+__all__ = ["pwd", "ls", "echo", "grep", "history", "cat", "exit", "SqliteCRUD", "mv", "DbCommands", "exclamation", "head", "rmdir"]
