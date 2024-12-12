@@ -141,7 +141,31 @@ def grep(**kwargs):
          else:
             return('Directory does not exist.')
       else:
-            return("Please enter a text file to be searched.")
+            if DbCommands.this_file_exists(db_path, file):
+               file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, file)
+               contents = DbCommands.get_Content(db_path, file_id, dir_id)
+               for line_number, line in enumerate(contents, start=0):
+                  if pattern in line:
+                     replaced_pattern = pattern
+                     formatted_line = replace_pattern_with_format(line, pattern, replaced_pattern)
+                     count += 1
+                     string = string + formatted_line + newline
+                     
+                     if flags:
+                        if len(flags) == 1:
+                           flags = flags[0]
+                           flags = flags.strip('-')
+                           if flags in valid_flags:
+                              if flags == 'c':
+                                 return(f'{count}')
+                              elif flags == 'l':
+                                 return(f'{file}')
+                           else:
+                              return(f'Only -l and -n are supported in this shell')
+                     else:
+                        console.print(string)
+            else:
+               return('File does not exist.')
    else:
       file = file.split('\n')
       string = []

@@ -1145,3 +1145,33 @@ cat misses.txt >> misses32.txt
 cat misses.txt > misses32.txt
 cat misses32.txt
 ls
+loadintodb
+loadintodb
+cat pooh.txt
+cat Pooh.txt
+wc Pooh.txt
+cd Pooh.txt
+wc Pooh.txt
+wc Pooh.txt
+cat Pooh.txt
+cat Pooh.txt | sort
+cat Pooh.txt | sort
+who
+who
+who
+who
+who
+ls
+ls -l
+cd ppts
+ls -l
+cd tests
+ls -l
+cat Pooh.txt
+grep the Pooh.txt
+grep the Pooh.txt
+grep the Pooh.txt
+cat Pooh.txt | grep the
+cat Pooh.txt | grep riddle
+wc Pooh.txt
+ls -l

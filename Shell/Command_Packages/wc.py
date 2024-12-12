@@ -24,11 +24,9 @@ def wc(**kwargs):
     flags = kwargs.get("flags")
     params = kwargs.get("params")
     
-    cwd = get_CWD()
     count = 0
     lines = 0
     chars = 0
-    console = Console()
     valid_flags = ["l", "m", "w"]
     string = ''
     newline = '\n'
@@ -74,17 +72,11 @@ def wc(**kwargs):
                 file_id, dir_id = DbCommands.get_file_and_dir_id(db_path, content)
             if DbCommands.file_exists(db_path, content, dir_id):
                 file_contents = DbCommands.get_Content(db_path, file_id, dir_id)
-                
-                print(file_contents)
-                
-                for line_number, line in enumerate(file_contents, start=0):
-                    lines += 1
-                    for word in line:
-                        if word != ' ' and word != '\n' and word != '\t':
-                            count += 1
-                            for char in word:
-                                chars += 1
-                c_size = len(file_contents.encode('utf-8'))
+                                
+                lines = file_contents.strip().split('\n')
+                num_lines = len(lines)
+                num_words = len(file_contents.split())
+                c_size = len(file_contents)
                 
                 if flags:
                     if len(flags) == 1:
@@ -93,16 +85,16 @@ def wc(**kwargs):
                         if flags in valid_flags:
                             if flags == 'l':
                                 print("lines")
-                                return(f'{lines}')
+                                return(f'{num_lines}')
                             elif flags == 'm':
                                 print("chars")
-                                return(f'{chars}')
-                            elif flags == 'w':
-                                print("size")
                                 return(f'{c_size}')
+                            elif flags == 'w':
+                                print(f"words")
+                                return(f'{num_words}')
                                                 
                         else:
                             return(f'Only -l, -m, and -w are supported in this shell.')
                 else:
-                    return(f'Lines: {lines} Words: {count} Bytes: {c_size} {content}')
+                    return(f'Lines: {num_lines} Words: {num_words} Bytes: {c_size} {content}')
     
